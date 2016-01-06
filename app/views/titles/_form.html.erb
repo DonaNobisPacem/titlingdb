@@ -1,0 +1,20 @@
+<%= simple_form_for(@title) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :classification %>
+    <%= f.input :description %>
+    <%= f.input :owner %>
+    <%= f.input :total_area %>
+    <%= f.input :acquisition %>
+    <%= f.input :status %>
+    <%= f.input :date_issued %>
+    <%= f.input :tax_dec_no %>
+    <%= f.input :remarks %>
+    <%= f.association :university %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Classification:</strong>
+  <%= @title.classification %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @title.description %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @title.owner %>
+</p>
+
+<p>
+  <strong>Total area:</strong>
+  <%= @title.total_area %>
+</p>
+
+<p>
+  <strong>Acquisition:</strong>
+  <%= @title.acquisition %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @title.status %>
+</p>
+
+<p>
+  <strong>Date issued:</strong>
+  <%= @title.date_issued %>
+</p>
+
+<p>
+  <strong>Tax dec no:</strong>
+  <%= @title.tax_dec_no %>
+</p>
+
+<p>
+  <strong>Remarks:</strong>
+  <%= @title.remarks %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= @title.university %>
+</p>
+
+<%= link_to 'Edit', edit_title_path(@title) %> |
+<%= link_to 'Back', titles_path %>

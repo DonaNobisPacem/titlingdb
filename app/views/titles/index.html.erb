@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Titles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Description</th>
+      <th>Owner</th>
+      <th>Total area</th>
+      <th>Acquisition</th>
+      <th>Status</th>
+      <th>Date issued</th>
+      <th>Tax dec no</th>
+      <th>Remarks</th>
+      <th>University</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @titles.each do |title| %>
+      <tr>
+        <td><%= title.classification %></td>
+        <td><%= title.description %></td>
+        <td><%= title.owner %></td>
+        <td><%= title.total_area %></td>
+        <td><%= title.acquisition %></td>
+        <td><%= title.status %></td>
+        <td><%= title.date_issued %></td>
+        <td><%= title.tax_dec_no %></td>
+        <td><%= title.remarks %></td>
+        <td><%= title.university %></td>
+        <td><%= link_to 'Show', title %></td>
+        <td><%= link_to 'Edit', edit_title_path(title) %></td>
+        <td><%= link_to 'Destroy', title, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Title', new_title_path %>
