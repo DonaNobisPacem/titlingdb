@@ -4,7 +4,11 @@ class TitlesController < ApplicationController
   # GET /titles
   # GET /titles.json
   def index
-    @titles = Title.all
+    if params[:search].present?
+      @titles = Title.search(params[:search], page: params[:page], per_page: 10)
+    else
+      @titles = Title.paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   # GET /titles/1
@@ -69,6 +73,13 @@ class TitlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def title_params
-      params.require(:title).permit(:classification, :description, :owner, :total_area, :acquisition, :status, :date_issued, :tax_dec_no, :remarks, :university_id)
+      params.require(:title).permit(:classification, :description, :owner, :total_area, :acquisition, :status, :date_issued, :tax_dec_no, :remarks, :university_id, 
+        steps_attributes: [
+          :id,
+          :date_start,
+          :description,
+          :_destroy
+        ]
+      )
     end
 end

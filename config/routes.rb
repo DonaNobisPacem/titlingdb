@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'titles#index'
+  
   resources :steps
   resources :titles
   resources :universities

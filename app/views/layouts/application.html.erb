@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Titlingdb</title>
+  <title>OVPD LATTICE</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= csrf_meta_tags %></head>
 <body>
+	<div class="container-fluid"><!-- container -->
+		<div class="row"> <!-- row -->
+			<div class="col-xs-2">
+			</div>
+			<div class="col-xs-8">
+				<div class="panel panel-success">
+					<div class="panel-heading text-center">
+						<%= link_to root_path do %>
+							<h3 class="panel-header">Office of the Vice President for Development</h3>
+							<h1 class="panel-header"><b>Land Holdings, Titling, and Certification</b></h1>
+						<% end %>
 
-<%= yield %>
+						<%= render 'shared/search' %>
 
+						or <%= link_to "View by universities", universities_path %>
+					</div>
+				</div>
+				<hr>
+				<%= yield %>
+			</div>
+			<div class="col-xs-2">
+			</div>
+		</div>
+	</div>
 </body>
 </html>

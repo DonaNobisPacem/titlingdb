@@ -2,19 +2,37 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :classification %>
-    <%= f.input :description %>
-    <%= f.input :owner %>
-    <%= f.input :total_area %>
-    <%= f.input :acquisition %>
-    <%= f.input :status %>
-    <%= f.input :date_issued %>
-    <%= f.input :tax_dec_no %>
-    <%= f.input :remarks %>
-    <%= f.association :university %>
+    <%= f.association :university, label: "Under CU", :label_method => :university_name, :include_blank => false %>
+    <%= f.input :classification, label: "Classification" %>
+    <%= f.input :description, label: "Description", input_html: { rows: 5 } %>
+    <%= f.input :owner, label: "Owner" %>
+    <%= f.input :total_area, label: "Total Area in Square Meters" %>
+    <%= f.input :acquisition, label: "Acquisition" %>
+    <%= f.input :status, label: "Titling Status" %>
+    <%= f.input :date_issued, :as => :date_picker, :placeholder => "DD/MM/YYYY", label: "Date Issued" %>
+    <%= f.input :tax_dec_no, label: "Tax Dec No." %>
+    <%= f.input :remarks, label: "Remarks", input_html: { rows: 5 }  %>
+
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3>Steps Taken</h3>
+      </div>
+      <div class="panel-body">
+
+        <%= f.simple_fields_for :steps do |step| %>
+          <%= render 'step_fields', :f => step %>
+        <% end %>
+
+        <div class="pull-right">
+          <%= link_to_add_association '<i class="fa fa-plus"></i> Add Step'.html_safe, f, :steps %>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-success pull-right" %>
   </div>
 <% end %>

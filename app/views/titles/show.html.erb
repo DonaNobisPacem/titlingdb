@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>University:</strong>
+  <%= link_to @title.university_name, @title.university %>
+</p>
 
 <p>
   <strong>Classification:</strong>
@@ -32,7 +35,7 @@
 
 <p>
   <strong>Date issued:</strong>
-  <%= @title.date_issued %>
+  <%= @title.date_issued.strftime("%d %B %Y") if @title.date_issued.present? %>
 </p>
 
 <p>
@@ -45,10 +48,40 @@
   <%= @title.remarks %>
 </p>
 
-<p>
-  <strong>University:</strong>
-  <%= @title.university %>
-</p>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-steps-table">
+      <h3 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#steps-table" aria-expanded="false" aria-controls="steps-table">
+          Steps Taken
+        </a>
+      </h4>
+    </div>
+    <div id="steps-table" class="panel-collapse collapse" role="tabpanel" aria-labelledby="steps-table">
+      <div class="panel-body">
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @title.steps.order(:date_start).each do |step| %>
+              <tr>
+                <td style="text-align: left;"><%= step.date_start.strftime("%d %B %Y") %></td>
+                <td style="text-align: left;"><%= step.description %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_title_path(@title) %> |
-<%= link_to 'Back', titles_path %>
+<div class="pull-right">
+  <%= link_to 'Edit', edit_title_path(@title) %> |
+  <%= link_to 'Delete', @title, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+  <%= link_to 'Back', "javascript:history.back()" %>
+</div>

@@ -1,0 +1,36 @@
+<%= link_to '<i class="fa fa-plus"></i> New Title'.html_safe, new_title_path, :class => "pull-right" %>
+<table class="table table-hover table-responsive">
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Description</th>
+      <th>Owner</th>
+      <th>Total Area (in sqm.)</th>
+      <th>Total Area (in hectares)</th>
+      <th>Acquisition</th>
+      <th>Titling Status</th>
+      <th>Date Issued</th>
+      <th>Tax Dec No.</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @titles.each do |title| %>
+      <tr>
+        <td style="text-align: left;"><%= title.classification %></td>
+        <td style="text-align: left;"><%= title.description %></td>
+        <td style="text-align: left;"><%= title.owner %></td>
+        <td style="text-align: left;"><%= title.area_in_sqm %></td>
+        <td style="text-align: left;"><%= title.area_in_hectares %></td>
+        <td style="text-align: left;"><%= title.acquisition %></td>
+        <td style="text-align: left;"><%= title.status %></td>
+        <td style="text-align: left;"><%= title.date_issued.strftime("%d %B %Y") if title.date_issued.present? %></td>
+        <td style="text-align: left;"><%= title.tax_dec_no %></td>
+        <td style="text-align: right;"><%= link_to "View details", title %></td>    
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="text-center">
+  <%= will_paginate @titles, renderer: BootstrapPagination::Rails %>
+</div>

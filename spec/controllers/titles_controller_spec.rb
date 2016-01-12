@@ -23,12 +23,40 @@ RSpec.describe TitlesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Title. As you add validations to Title, be sure to
   # adjust the attributes here as well.
+
+  before(:each) do
+    @university = FactoryGirl.build(:university)
+    @university.save
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      classification: "MyString",
+      description: "MyText",
+      owner: "MyString",
+      total_area: "9.99",
+      acquisition: "MyString",
+      status: "MyString",
+      date_issued: "2016-01-06 13:08:21",
+      tax_dec_no: "MyString",
+      remarks: "",
+      university_id: @university.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      classification: "",
+      description: "",
+      owner: "",
+      total_area: "",
+      acquisition: "",
+      status: "",
+      date_issued: "",
+      tax_dec_no: "",
+      remarks: "",
+      university_id: @university.id
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +131,25 @@ RSpec.describe TitlesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          classification: "MyString",
+          description: "MyText",
+          owner: "MyString",
+          total_area: "9.99",
+          acquisition: "MyString",
+          status: "MyString",
+          date_issued: "2016-01-06 13:08:21",
+          tax_dec_no: "MyString",
+          remarks: "Remarks",
+          university_id: @university.id
+        }
       }
 
       it "updates the requested title" do
         title = Title.create! valid_attributes
         put :update, {:id => title.to_param, :title => new_attributes}, valid_session
         title.reload
-        skip("Add assertions for updated state")
+        expect(assigns(:title).remarks).to match(new_attributes[:remarks])
       end
 
       it "assigns the requested title as @title" do

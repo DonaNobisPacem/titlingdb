@@ -23,12 +23,26 @@ RSpec.describe StepsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Step. As you add validations to Step, be sure to
   # adjust the attributes here as well.
+
+  before(:each) do
+    @title = FactoryGirl.build(:title)
+    @title.save
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      date_start: DateTime.now,
+      description: "Description",
+      title_id: @title.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      date_start: "",
+      description: "",
+      title_id: nil
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +117,18 @@ RSpec.describe StepsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          date_start: DateTime.now,
+          description: "Description2",
+          title_id: @title.id
+        }
       }
 
       it "updates the requested step" do
         step = Step.create! valid_attributes
         put :update, {:id => step.to_param, :step => new_attributes}, valid_session
         step.reload
-        skip("Add assertions for updated state")
+        expect(assigns(:step).description).to match(new_attributes[:description])
       end
 
       it "assigns the requested step as @step" do
