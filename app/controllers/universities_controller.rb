@@ -10,7 +10,7 @@ class UniversitiesController < ApplicationController
   # GET /universities/1
   # GET /universities/1.json
   def show
-    @titles = @university.titles.paginate(:page => params[:page])
+    @titles = @university.titles.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /universities/new

@@ -1,3 +1,4 @@
+User.create(email: "jddulay@up.edu.ph", password: "07211994", password_confirmation: "07211994", admin: true, approved: true)
 
 University.create!([
 		{:university_name => "UP Baguio", :university_code => "UPB"},
